@@ -17,12 +17,10 @@ public class TouristServiceImpl implements TouristService {
     private TouristRepository touristRepo;
 
     @Override
-    public Tourist registerTourist(Tourist tourist) throws AgeLimitException {
+    public Tourist saveTouristDetails(Tourist tourist) throws AgeLimitException {
         if (tourist.getAge() > 90) {
             throw new AgeLimitException(ConstantUtils.AGE_LIMIT_MESSAGE);
         }
-        Serializable serializable = touristRepo.save(tourist);
-        tourist.setTouristId((long) serializable);
-        return tourist;
+        return touristRepo.save(tourist);;
     }
 }

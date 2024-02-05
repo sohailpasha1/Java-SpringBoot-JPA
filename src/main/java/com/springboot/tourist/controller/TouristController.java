@@ -28,4 +28,20 @@ public class TouristController {
         tourist = touristService.saveTouristDetails(tourist);
         return new ResponseEntity<>(tourist, HttpStatus.OK);
     }
+
+     @GetMapping("/get-tourist-list-by-name")
+    private ResponseEntity<List<Tourist>> fetchTouristByName(@RequestParam("name") String name) {
+        return touristService.fetchTouristByNameService(name);
+    }
+
+    @GetMapping("/get-tourist-by-id")
+    private ResponseEntity<Tourist> fetchTouristById(@RequestParam("id") Long id) {
+        return touristService.fetchTouristByIdService(id);
+    }
+
+    @DeleteMapping("/delete-tourist-by-id")
+    private ResponseEntity<String> deleteTouristById(@RequestParam("id") Long id) {
+        touristService.deleteTouristByIdService(id);
+        return new ResponseEntity<>("deleted Successfully", HttpStatus.OK);
+    }
 }

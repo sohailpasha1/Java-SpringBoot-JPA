@@ -23,4 +23,19 @@ public class TouristServiceImpl implements TouristService {
         }
         return touristRepo.save(tourist);;
     }
+
+     @Override
+    public void deleteTouristByIdService(Long id) {
+        repo.deleteById(id);
+    }
+
+    @Override
+    public ResponseEntity<Tourist> fetchTouristByIdService(Long id) {
+        return new ResponseEntity<>(repo.findById(id).get(), HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<List<Tourist>> fetchTouristByNameService(String name) {
+        return new ResponseEntity<>(repo.findByName(name), HttpStatus.OK);
+    }
 }
